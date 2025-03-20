@@ -1,0 +1,24 @@
+<!-- templates/registration/login.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'asistenteai/css/misEstiloshome.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="#">Asistente IA</a>
+        <a href="#">Cumpleaños</a>
+        <a href="#">Opción 3</a>
+    </nav>
+   {% block content %}
+    <p>¡Sesión finalizada!</p>
+
+    <a href="{% url 'login'%}">Haga clic aquí para iniciar sesión nuevamente.</a>
+    {% endblock %}
+    
+
+</body>
+</html>

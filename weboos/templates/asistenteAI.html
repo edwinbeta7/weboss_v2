@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}Asistente AI OSS{% endblock %}  
+<body>
+-   {% block navinicio %}{% endblock %}
+    {% block navasistente %}hidden{% endblock %}
+    {% block navcumple %}{% endblock %}
+    {% block navop %}{% endblock %}
+    {% block navlogout %}{% endblock %}
+
+    {% block headers %}Asistente Documental con IA &#x1F916;{% endblock %}
+    
+    {% block message %} <!-- Mensaje -->
+        <h4 style="color:#060Eaa">El Asistente IA Documental te permite revisar un documento de forma rápida y eficiente 
+        con Inteligencia Artificial. Selecciona el archivo .pdf o .docx que desees verificar y una vez la inteligencia artificial lo verifique,
+        podrás empezar a hacerle preguntas relacionadas con el documento.</h4>
+        <form method="POST" action="{% url 'asistenteai' %}">
+            {% csrf_token %}
+            <table>
+                {% block content %}
+                <tr>
+                    <td> <button type="submit" name="action" value="Seleccionar">Seleccionar Archivo &#x1F56E;</button> </td>
+                    <td><input type="text" id="rutafile" name="rutafile" placeholder="documento .pdf o .docx" style="width: {{len}}ch;" readonly value="{{textruta}}"></td>
+                    <td>{{form.name.errors}}</td>
+                </tr>
+                <tr>
+                    <td><button id="miBoton" type="submit" name="action" value="Analizar">Analizar Archivo con IA &#x1F50D;</button></td>
+                    <td><textarea id="miTextArea" rows="5" style="width: 500px;" placeholder="Texto Resumen">{{resumen}}</textarea></td>
+                    <div id="ruedaEspera" style="display: none;"></div>
+                    <td>{{form.profesion.errors}}</td>                    
+                    
+                </tr>
+                <style>
+                    #ruedaEspera {
+                        border: 4px solid rgba(0, 0, 0, 0.1);
+                        border-left-color: #344ddb;
+                        border-radius: 50%;
+                        width: 30px;
+                        height: 30px;
+                        animation: girar 1s linear infinite;
+                        display: inline-block;
+                    }
+
+                    @keyframes girar {
+                        to { transform: rotate(360deg); }
+                    }
+                </style>
+                <script>
+                    document.getElementById('miBoton').addEventListener('click', function() {
+                        document.getElementById('ruedaEspera').style.display = 'block'; // Muestra la rueda de espera
+                        esperarTexto();
+                    });
+                
+                    function esperarTexto() {
+                        if (document.getElementById('miTextArea').value.trim() !== '') {
+                            document.getElementById('ruedaEspera').style.display = 'none'; // Oculta la rueda de espera
+                            // Aquí puedes agregar el código para procesar el texto del textarea
+                            console.log("Texto del textarea:", document.getElementById('miTextArea').value);
+                        } else {
+                            setTimeout(esperarTexto, 100); // Revisa cada 100 milisegundos
+                        }
+                    }
+                </script>
+                {% endblock %}
+            </table>
+            <h4 style="color:#060Eaa">Pregunta lo que desees al Asistente para que analice el documento y te dé una respuesta</h4>
+            <table>
+                <tr>
+                    <td> <h3>Pregunta:</h3></td>
+                    <td><textarea rows="2" id="pregunta" name="pregunta" placeholder="Haga una pregunta acerca del documento." style="width: 500px;">{{pregunta}}</textarea></td>
+                </tr>
+                <tr>
+                    <td><button id="miBoton2" type="submit" name="action" value="Preguntar">Respuesta &#x211F;</button></td>
+                    <td><textarea id="miTextArea2" rows="5" style="width: 500px;" placeholder="Texto Respuesta">{{respuesta}}</textarea></td>
+                </tr>
+                <script>
+                    document.getElementById('miBoton2').addEventListener('click', function() {
+                        document.getElementById('ruedaEspera').style.display = 'block'; // Muestra la rueda de espera
+                        esperarTexto();
+                    });
+                
+                    function esperarTexto() {
+                        if (document.getElementById('miTextArea2').value.trim() !== '') {
+                            document.getElementById('ruedaEspera').style.display = 'none'; // Oculta la rueda de espera
+                            // Aquí puedes agregar el código para procesar el texto del textarea
+                            console.log("Texto del textarea:", document.getElementById('miTextArea2').value);
+                        } else {
+                            setTimeout(esperarTexto, 100); // Revisa cada 100 milisegundos
+                        }
+                    }
+                </script>
+            </table>
+        </form>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block title %}Cumpleaños CX_OSS{% endblock %}  
+<body>
+-   {% block navinicio %}{% endblock %}
+    {% block navasistente %}{% endblock %}
+    {% block navcumple %}hidden{% endblock %}
+    {% block navtpredictor %}{% endblock %}
+    {% block navop %}{% endblock %}
+    {% block navlogout %}{% endblock %}
+    
+        {% load static %}      
+        {% block headers %}Bienvenido al gestor de cumpleaños Ing Cx_OSS &#x1F382; {% endblock %} 
+        <div>
+            <table border-collapse: 'collapse';>
+                <tr>
+                    <td border: 'none';><img src="{% static 'asistenteai/logotef.png' %}" alt="My image"></td>
+                    <td border: 'none'; adding: '8px';><h1 style="color:#060E66"></h1></td>
+                </tr> 
+            </table> 
+        </div> 
+
+    {% block message %} <!-- Mensaje -->
+    <h2>{{titulo}}</h2>
+    <div class="table-container">
+        <table id="companerosTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE_FUNCIONARIO</th>
+                    <th>NOMBRE_CORTO</th>
+                    <th>MES</th>
+                    <th>DIA</th>
+                    <th>CORREO</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for companero in datoscumple %}
+                <!-- ['ID', 'NOMBRE_FUNCIONARIO', 'NOMBRE_CORTO', 'MES', 'DIA', 'CORREO', 'SENDER_NAME', 'SENDER_ADDRES', 'ESTADO']-->
+                    <tr onclick="fillForm(this)">                
+                        <td>{{companero.ID}}</td>
+                        <td>{{companero.NOMBRE_FUNCIONARIO}}</td>
+                        <td>{{companero.NOMBRE_CORTO}}</td>
+                        <td>{{companero.MES}}</td>
+                        <td>{{companero.DIA}}</td>
+                        <td>{{companero.CORREO}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <form id='myform' method="POST" action="{% url 'capturar_datos' %}">  
+        {% csrf_token %} 
+        <button type="submit" name="action" value="Reload">Recargar &#128260;</button>
+        <h3>Datos colaborador</h3> <!--class="formulario"-->
+        <h4 style="color: red; font-style: italic;">{{titulo1}}</h4>
+        <table>
+            <td>
+                <table class="form-table">
+                    <td>
+                        <tr>
+                            <td><label for="id">ID:</label></td>
+                            <td><input type="text" id="id" name="id" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="name">NOMBRE_FUNCIONARIO:</label></td>
+                            <td><input type="text" id="name" name="name" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="nameshort">NOMBRE_CORTO:</label></td>
+                            <td><input type="text" id="nameshort" name="nameshort" placeholder="Introduce nombre corto"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="mes">MES_CUMPLE:</label></td>
+                            <td><input type="text" id="mes" name="mes" placeholder="Introduce número de mes"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dia">DIA_CUMPLE:</label></td>
+                            <td><input type="text" id="dia" name="dia" placeholder="Introduce número de día"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">CORREO:</label></td>
+                            <td><input type="email" id="email" name="email" readonly></td>
+                        </tr> 
+                    </td>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <td>
+                        <tr>
+                            <button type="submit" name="action" value="mensajeia">Mensaje de cumpleaños generado por IA &#x1F389;</button>
+                        </tr>
+                        <tr>
+                            <h3>{{mensajeia}}</h3>
+                        </tr>
+                    </td>
+                </table>
+            </td>
+        </table>
+        {% if 'ok' in request.GET %}
+            <p style="color: blue"><b>Se ejecutó la acción correctamente</p></b>
+        {% endif %}
+        <button type="submit" name="action" value="Consultar">Consultar &#128270;</button>
+        <button type="submit" name="action" value="Modificar">Modificar &#128395;</button>
+        <button type="submit" name="action" value="Insertar" hidden>Insertar &#10133;</button>
+        <button type="submit" name="action" value="Eliminar" hidden>Eliminar &#128683;</button>
+    </form>
+
+    {% endblock %}
+</body>
+</html>

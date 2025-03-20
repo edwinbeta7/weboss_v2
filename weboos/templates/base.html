@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'asistenteai/css/misEstiloscumple.css' %}">
+    <link rel="stylesheet" href="{% static 'asistenteai/css/misEstiloshome.css' %}">
+    <link rel="stylesheet" href="{% static 'asistenteai/css/misEstilosasai.css' %}">
+    <link rel="icon" href="{% static 'asistenteai/logotefico.png' %}" type="image/png">
+    <script src="{% static 'asistenteai/js/misjavascumple.js' %}"></script>
+    <script src="{% static 'asistenteai/js/asistenteia.js' %}"></script>
+</head>
+<body>
+    <nav>
+        <div {% block navinicio %}{% endblock %}><a href="{% url 'home'%}">Inicio</a> </div>
+        <div {% block navasistente %}{% endblock %}><a href="{% url 'asistenteai'%}" >Asistente IA</a></div>
+        <div {% block navcumple %}{% endblock %}><a href="{% url 'cumple'%}">Cumpleaños</a></div>
+        <div {% block navtpredictor %}{% endblock %}><a href="{% url 'tpredictor'%}">Predictor Throughput de Usuarios</a></div>
+        <div hidden {% block navop %}{% endblock %}><a href="#">Opción 3</a></div>
+        <!-- Formulario de Cierre de Sesión -->
+        <div hidden {% block navlogout %}{% endblock %}><form id="logout-form" method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <a href="{% url 'login' %}">Cerrar Sesión</a>
+        </form></div>
+    </nav>
+    {% load static %}
+    <div>
+        <table border-collapse: 'collapse';>
+            <tr>
+                <td border: 'none';><img src="{% static 'asistenteai/logotef.png' %}" alt="My image"></td>
+                <td border: 'none'; adding: '8px';><h1 style="color:#060E66"> {% block headers %}{% endblock %}</h1></td>
+            </tr> 
+        </table> 
+    </div>
+
+    {% block message %} <!-- Mensaje -->{% endblock %}
+
+    <footer>
+        <p>&#128692; Ing.Edwin Betancourt</p>
+        <p>&copy; 2025. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
