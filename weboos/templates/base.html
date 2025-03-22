@@ -16,8 +16,6 @@
     <nav>
         <div {% block navinicio %}{% endblock %}><a href="{% url 'home'%}">Inicio</a> </div>
         <div {% block navasistente %}{% endblock %}><a href="{% url 'asistenteai'%}" >Asistente IA</a></div>
-        <div {% block navcumple %}{% endblock %}><a href="{% url 'cumple'%}">Cumpleaños</a></div>
-        <div {% block navtpredictor %}{% endblock %}><a href="{% url 'tpredictor'%}">Predictor Throughput de Usuarios</a></div>
         <div hidden {% block navop %}{% endblock %}><a href="#">Opción 3</a></div>
         <!-- Formulario de Cierre de Sesión -->
         <div hidden {% block navlogout %}{% endblock %}><form id="logout-form" method="post" action="{% url 'logout' %}">

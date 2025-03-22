@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$-jpvp-t8=fx8n_-@+&+0d+@u+cf)gx09qs@(p%cn&f-far2q$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'weboos',
     'asistenteai',
-    'cumple',
-    'tpredictor',
 ]
 
 MIDDLEWARE = [

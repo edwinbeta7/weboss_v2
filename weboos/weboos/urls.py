@@ -18,8 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 from asistenteai.views import *
 from weboos.views import *
-from cumple.views import *
-from tpredictor.views import *
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -27,12 +25,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', home),
     path('home/', home),
-    path('home.html', home),
-    
+    path('home.html', home),    
     path('', include('asistenteai.urls')),
-    path('', include('cumple.urls')),
-    path('', include('tpredictor.urls')),  # Incluir las URLs de tpredictor
-
-
     path('prueba/', prueba),
 ]

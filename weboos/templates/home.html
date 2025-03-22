@@ -3,8 +3,6 @@
 <body>
 -   {% block navinicio %}hidden{% endblock %}
     {% block navasistente %}{% endblock %}
-    {% block navcumple %}{% endblock %}
-    {% block navtpredictor %}{% endblock %}
     {% block navop %}{% endblock %}
     {% block navlogout %}{% endblock %}
 
@@ -16,14 +14,6 @@
         <tr>                
             <td><a href="{% url 'asistenteai'%}" >Asistente Documental IA</a></td>
             <td><a >Asistente Documental que te permite revisar un documento de forma rápida y eficiente con Inteligencia Artificial.</a></td>
-        </tr>
-        <tr>                
-            <td><a href="{% url 'cumple'%}">Gestor Cumpleaños</a></td>
-            <td><a >Gestiona la información de cumpleaños de los Ingenieros del área Ing CX_OSS</a></td>
-        </tr>
-        <tr>                
-            <td><a href="{% url 'tpredictor'%}">Predictor Throughput de Usuarios</a></td>
-            <td><a >Predictor de Throughput de usuario Ing Cx_OSS</a></td>
         </tr>
     </table>
     {% endblock %}

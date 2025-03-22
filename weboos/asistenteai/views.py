@@ -1,11 +1,7 @@
-from django.shortcuts import render, HttpResponse, redirect
-from django.urls import reverse
-from django.http import JsonResponse, HttpResponse
-from django.views import View
+from django.shortcuts import render
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .forms import ContactForm
 import openai
-from dotenv import load_dotenv
 from openai import OpenAI
 import zipfile
 import os, re, math
